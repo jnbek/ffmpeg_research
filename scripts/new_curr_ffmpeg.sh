@@ -11,9 +11,9 @@ ${HOME}/ffmpeg5/bin/ffmpeg \
     -f concat -safe 0 -i vidlist.txt \
     -i logo/aliengeek.gif \
     -i audio/151.mp3 \
-    #-reconnect_streamed 1 -multiple_requests 1 -thread_queue_size 1024 -reconnect_at_eof 1 -i http://0.0.0.0:8000/stream \
     -filter_complex "drawtext=text='%{pts\:localtime\:$(date --date=${STTIME} +%s)\:%c %Z }':x='(w-text_w)'/32:y=10:font=Vera:fontsize=18:alpha=0.5:box=1:boxborderw=4",select="not(mod(n\,${SPEED}))",setpts=N/FRAME_RATE/TB,fps=${FPS},"overlay=x=main_w-overlay_w-(main_w*0.01):y=main_h-overlay_h-(main_h*0.01)" \
     -vcodec libx264 \
     -map 0:v:0 -map 2:a:0 -c:a aac -b:a 192k \
     -shortest \
 output/timelapse.mp4
+    #-reconnect_streamed 1 -multiple_requests 1 -thread_queue_size 1024 -reconnect_at_eof 1 -i http://0.0.0.0:8000/stream \
